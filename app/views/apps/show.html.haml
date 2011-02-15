@@ -11,6 +11,13 @@
     = link_to 'edit', edit_app_path(@app), :class => 'button'
     = link_to 'destroy', app_path(@app), :method => :delete, :confirm => 'Seriously?', :class => 'button'
 
+%h3 Registry
+%table.registry
+  %tbody
+    %tr
+      %td
+        = @app.registry || "None"
+
 %h3 Watchers
 %table.watchers
   %thead

@@ -7,6 +7,12 @@
 %div.checkbox
   = f.check_box :resolve_errs_on_deploy
   = f.label :resolve_errs_on_deploy, 'Resolve errs on deploy'
+
+%fieldset
+  %legend Registry
+  = f.fields_for :registry do |r|
+    %div.watcher.nested
+      = r.text_field :value
   
 %fieldset.nested-wrapper
   %legend Watchers

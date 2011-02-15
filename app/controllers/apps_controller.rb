@@ -15,10 +15,12 @@ class AppsController < ApplicationController
   def new
     @app = App.new
     @app.watchers.build
+		@app.build_registry
   end
   
   def edit
     @app.watchers.build if @app.watchers.none?
+		@app.build_registry unless @app.registry
   end
   
   def create

@@ -1,6 +1,6 @@
 Errbit::Application.routes.draw do
   
-  devise_for :users
+	devise_for :users
 
   # Hoptoad Notifier Routes
   match '/notifier_api/v2/notices' => 'notices#create'
@@ -16,6 +16,7 @@ Errbit::Application.routes.draw do
   end
   
   resources :apps do
+		resource :registry
     resources :errs do
       resources :notices
       member do
