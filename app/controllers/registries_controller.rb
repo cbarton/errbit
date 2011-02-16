@@ -1,37 +1,34 @@
 class RegistriesController < ApplicationController
 	
 	before_filter :find_app
+	skip_before_filter :authenticate_user!, :except => :destroy 
 
-  def create
-    @registry = Registry.new(params[:registry])
+	def show
+		@registry = @app.registry
+		
+		render :json => @registry
+	end
 
-    respond_to do |format|
-      if @registry.save
-        format.html { redirect_to(@registry, :notice => 'Registry was successfully created.') }
-        format.xml  { render :xml => @registry, :status => :created, :location => @registry }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @registry.errors, :status => :unprocessable_entity }
-      end
-    end
+  def create	
+		@registry = @app.registry || @app.build_registry
+		
+		if @registry.update_attributes(:data => params[:data]) 
+			render :json => { :success => true, :message => "Created Registry for #{@app.name}", :registry => @registry }
+		else
+			render :json => { :message => "Failed to create registry", :errors => @registry.errors }
+     end
   end
 
-  # DELETE /registries/1
-  # DELETE /registries/1.xml
   def destroy
-    @registry = Registry.find(params[:id])
+		@registry = @app.registry
     @registry.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(registries_url) }
-      format.xml  { head :ok }
-    end
+		redirect_to edit_app_path(@app)
   end
   
 	protected
   
     def find_app
-      @app = App.find(params[:id])
+      @app = App.find(params[:app_id])
 
 			# No need to check user authentication for registry posts, maybe a future /TODO/
     end

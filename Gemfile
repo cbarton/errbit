@@ -2,11 +2,12 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
 gem 'libxml-ruby'
-gem 'bson_ext', '~> 1.2'
-gem 'mongoid', '~> 2.0.0.rc.6'
+gem 'bson_ext', '~> 1.2.1'
+gem 'mongoid', '2.0.0.rc.7'
 gem 'haml'
 gem 'will_paginate'
 gem 'devise', '~> 1.1.3'
+gem 'ruby-debug19'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.1'

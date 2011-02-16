@@ -1,21 +1,29 @@
 class Registry
   include Mongoid::Document
 	
-	field :value, :type => String
+	field :data
 
-	referenced_in :app
+	embedded_in :app, :inverse_of => :registry
 
-	validate :check_json_validity
+	validate :check_json
 	
-	def check_json_validity
+	def check_json
 		begin
-			self.value = YAML.load(self.value.gsub(/,[ ]*/, "\n")).to_json
-		rescue Exception => e
-			errors.add(:json, "Registry must be valid JSON") 
+			if self.data.is_a?(String)	
+				self.data = JSON.parse(self.data.gsub(/=>/, ':'))
+			else
+				JSON.unparse(self.data)
+			end
+		rescue Exception 
+			errors.add(:data, "must be valid JSON.") 
 		end
 	end
 
-	def to_json
-		JSON.parse(value)
+	def as_json(options={}) 
+		data
+	end
+
+	def to_s
+		data
 	end
 end

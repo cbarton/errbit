@@ -35,7 +35,7 @@ class AppsController < ApplicationController
   end
   
   def update    
-    if @app.update_attributes(params[:app])
+    if @app.update_attributes(params[:app]) 
       flash[:success] = "Good news everyone! '#{@app.name}' was successfully updated."
       redirect_to app_path(@app)
     else

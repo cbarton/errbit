@@ -11,8 +11,10 @@
 %fieldset
   %legend Registry
   = f.fields_for :registry do |r|
-    %div.watcher.nested
-      = r.text_field :value
+    %div.registry.nested
+      = r.text_field :data
+      %div{:style => @app.registry.data ? "float:right;" : "display:none;"} 
+        = link_to "Remove Registry", {:controller => :registries, :action => :destroy, :app_id => @app.id }, :method => :delete
   
 %fieldset.nested-wrapper
   %legend Watchers

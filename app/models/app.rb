@@ -9,7 +9,7 @@ class App
 
   embeds_many :watchers
   embeds_many :deploys
-	references_one 	:registry, 	:dependent => :destroy
+	embeds_one  :registry
   references_many :errs, 			:dependent => :destroy
   
   before_validation :generate_api_key, :on => :create
@@ -21,7 +21,7 @@ class App
   
   accepts_nested_attributes_for :watchers, :allow_destroy => true,
     :reject_if => proc { |attrs| attrs[:user_id].blank? && attrs[:email].blank? }
-	accepts_nested_attributes_for :registry, :allow_destroy => true, :update_only => true
+	accepts_nested_attributes_for :registry, :allow_destroy => true
   
   # Mongoid Bug: find(id) on association proxies returns an Enumerator
   def self.find_by_id!(app_id)
