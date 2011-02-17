@@ -12,15 +12,11 @@ describe Registry do
 
 	context 'being updated' do
 		it 'should not retain the previous value' do
-
-		end
-
-		it 'should check valid JSON as data' do
-			new_value = "{\"foo\": \"bar}"
+			new_value = {"foo"=>"bar"}
 			registry = Factory(:registry)
 			registry.update_attribute(:data, new_value)
-			registry.should_not be_valid
-			registry.errors[:data].should include("must be valid JSON.")
+			registry.should be_valid
+			registry.data.should == new_value
 		end
 	end 
 end

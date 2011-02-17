@@ -14,7 +14,7 @@
     %div.registry.nested
       = r.text_field :data
       %div{:style => @app.registry.data ? "float:right;" : "display:none;"} 
-        = link_to "Remove Registry", {:controller => :registries, :action => :destroy, :app_id => @app.id }, :method => :delete
+        = link_to "Remove Registry", {:controller => :registries, :action => :destroy, :app_id => @app.id }, :method => :delete, :remote => true
   
 %fieldset.nested-wrapper
   %legend Watchers
