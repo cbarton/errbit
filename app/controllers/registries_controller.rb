@@ -11,7 +11,6 @@ class RegistriesController < ApplicationController
 
   def create	
 		@registry = @app.registry || @app.build_registry
-		
 		if @registry.update_attributes(:data => params[:data]) 
 			render :json => { :success => true, :message => "Created Registry for #{@app.name}", :registry => @registry }
 		else
@@ -22,7 +21,6 @@ class RegistriesController < ApplicationController
   def destroy
 		@registry = @app.registry
     @registry.destroy
-		redirect_to edit_app_path(@app)
   end
   
 	protected

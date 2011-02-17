@@ -3,6 +3,11 @@ require 'ruby-debug'
 
 describe RegistriesController do
 
+  it_requires_authentication :for => {
+    :destroy => :delete
+  },
+  :params => {:app_id => 'dummyid', :id => 'dummyid'}
+
 	describe "POST /apps/:id/registry" do
 		before do
 			@app = Factory(:app)
@@ -46,6 +51,7 @@ describe RegistriesController do
 			@app = Factory(:app)
 			@registry = Factory(:registry, :app => @app)
 			App.stub(:find).with(@app.id).and_return(@app)
+			sign_in Factory(:user)
 		end
 
 		it "should destroy the registry" do

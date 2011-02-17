@@ -3,6 +3,9 @@ $(function(){
   
   if($('div.watcher.nested').length)
     activateWatcherTypeSelector();
+
+	if($('div.registry.nested').length)
+		activateRegistryTypeSelector();
 });
 
 function activateNestedForms() {
@@ -67,4 +70,13 @@ function activateWatcherTypeSelector() {
     wrapper.find('div.choosen').removeClass('choosen');
     wrapper.find('div.'+choosen).addClass('choosen');
   });
+}
+
+function activateRegistryTypeSelector(){
+	$('div.registry a').live('click', function(){
+		$('div.registry input[name*=data]').attr({
+			value: '',
+			disabled: 'true'
+		});	
+	});
 }
