@@ -5,7 +5,7 @@ class Registry
 
 	embedded_in :app, :inverse_of => :registry
 
-	validate :check_json
+	validate :check_json, :if => Proc.new { data.present? }
 	
 	def check_json
 		begin

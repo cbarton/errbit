@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'ruby-debug'
 
 describe RegistriesController do
 
@@ -11,9 +10,6 @@ describe RegistriesController do
 	describe "POST /apps/:id/registry" do
 		before do
 			@app = Factory(:app)
-			@registry = Factory(:registry, :app => @app)
-			App.stub(:new).and_return(@app)
-			Registry.stub(:new).and_return(@registry)
 		end
 
 		context "when the create is successful" do 
@@ -26,7 +22,7 @@ describe RegistriesController do
 
 		context "when the create is unsuccessful" do
 			it "should display error message" do
-				post :create, :data => false, :app_id => @app.id
+				post :create, :data => "{not valid json}", :app_id => @app.id
 				JSON.parse(response.body).should == {"message" => "Failed to create registry", "errors" => {"data" => "must be valid JSON."} } 
 			end
 		end

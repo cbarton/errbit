@@ -21,6 +21,11 @@ class RegistriesController < ApplicationController
   def destroy
 		@registry = @app.registry
     @registry.destroy
+
+		respond_to do |format|
+			format.js   
+			format.html { head 406} 
+		end
   end
   
 	protected
