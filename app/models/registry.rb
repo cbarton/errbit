@@ -10,11 +10,11 @@ class Registry
 	def check_json
 		begin
 			if self.data.is_a?(String)	
-				self.data = JSON.parse(self.data.gsub(/=>/, ':'))
+				self.data = ActiveSupport::JSON.decode(self.data.gsub(/=>/, ':'))
 			else
-				JSON.unparse(self.data)
+				ActiveSupport::JSON.encode(self.data)
 			end
-		rescue Exception 
+		rescue StandardError
 			errors.add(:data, "must be valid JSON.") 
 		end
 	end

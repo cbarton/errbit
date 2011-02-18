@@ -4,7 +4,7 @@ describe Registry do
 	
 	context 'validations' do
 		it 'requires valid JSON as data' do
-			registry = Factory.build(:registry, :data => "{foo:bar}")
+			registry = Factory.build(:registry, :data => "{foo[:}}bar}")
 			registry.should_not be_valid
 			registry.errors[:data].should include("must be valid JSON.")
 		end

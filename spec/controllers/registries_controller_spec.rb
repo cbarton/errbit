@@ -16,14 +16,14 @@ describe RegistriesController do
 			it "should display success message" do
 				post :create, :data => {"foo"=>"bar"}, :app_id => @app.id
 				@registry = @app.reload.registry
-				JSON.parse(response.body).should == {"success" => true, "message" => "Created Registry for #{@app.name}", "registry" => @registry.as_json} 
+				ActiveSupport::JSON.decode(response.body).should == {"success" => true, "message" => "Created Registry for #{@app.name}", "registry" => @registry.as_json} 
 			end	
 		end
 
 		context "when the create is unsuccessful" do
 			it "should display error message" do
-				post :create, :data => "{not valid json}", :app_id => @app.id
-				JSON.parse(response.body).should == {"message" => "Failed to create registry", "errors" => {"data" => "must be valid JSON."} } 
+				post :create, :data => "{not {{: }valid json}", :app_id => @app.id
+				ActiveSupport::JSON.decode(response.body).should == {"message" => "Failed to create registry", "errors" => {"data" => "must be valid JSON."} } 
 			end
 		end
 
@@ -38,7 +38,7 @@ describe RegistriesController do
 
 		it "should return the registry as JSON" do
 			get :show, :app_id => @app.id
-			JSON.parse(response.body).should == @registry.as_json
+			ActiveSupport::JSON.decode(response.body).should == @registry.as_json
 		end
 	end
 

@@ -7,7 +7,6 @@ gem 'mongoid', '2.0.0.rc.7'
 gem 'haml'
 gem 'will_paginate'
 gem 'devise', '~> 1.1.3'
-gem 'ruby-debug19'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.1'
