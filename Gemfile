@@ -9,11 +9,11 @@ gem 'will_paginate'
 gem 'devise', '~> 1.1.3'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.1'
+  gem 'rspec-rails', '~> 3.9'
 end
 
 group :test do
-  gem 'rspec', '~> 2.1'
+  gem 'rspec', '~> 3.9'
   gem 'database_cleaner', '~> 0.6.0'
   gem 'factory_girl_rails'
 end
