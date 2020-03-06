@@ -6,7 +6,7 @@ gem 'bson_ext', '~> 1.2.1'
 gem 'mongoid', '2.0.0.rc.7'
 gem 'haml'
 gem 'will_paginate'
-gem 'devise', '~> 1.1.3'
+gem 'devise', '~> 1.5.4'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.1'
