@@ -30,7 +30,7 @@ GEM
     activesupport (3.0.3)
     arel (2.0.8)
     bcrypt-ruby (2.1.4)
-    bson (1.2.2)
+    bson (1.12.5)
     bson_ext (1.2.2)
     builder (2.1.2)
     database_cleaner (0.6.3)
